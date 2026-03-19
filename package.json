@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/polinatokarenko/nodejs-hw#readme",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
     "nodemon": "^3.1.14"
   }
 }
