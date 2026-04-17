@@ -12,16 +12,16 @@ import { noteIdSchema } from "../validations/notesValidation.js";
 import { createNoteSchema } from "../validations/notesValidation.js";
 import { updateNoteSchema } from "../validations/notesValidation.js";
 
-const router = Router();
+const notesRouter = Router();
 
-router.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
+notesRouter.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
 
-router.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
+notesRouter.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
 
-router.post('/notes', celebrate(createNoteSchema), createNote);
+notesRouter.post('/notes', celebrate(createNoteSchema), createNote);
 
-router.delete('/notes/:noteId', celebrate(noteIdSchema), deleteNote);
+notesRouter.delete('/notes/:noteId', celebrate(noteIdSchema), deleteNote);
 
-router.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
+notesRouter.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
 
-export default router;
+export default notesRouter;
