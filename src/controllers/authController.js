@@ -56,8 +56,8 @@ export const refreshUserSession = async (req, res) => {
     throw createHttpError(401, 'Session not found');
   };
 
-  const isSessionTokeExpired = new Date() > new Date(session.refreshTokenValidUntil);
-  if (isSessionTokeExpired) {
+  const isSessionTokenExpired = new Date() > new Date(session.refreshTokenValidUntil);
+  if (isSessionTokenExpired) {
     throw createHttpError(401, 'Session token expired');
   };
 
@@ -70,4 +70,18 @@ export const refreshUserSession = async (req, res) => {
   setSessionCookies(res, newSession);
 
   res.status(200).json({ message: "Session refreshed" });
+};
+
+export const logoutUser = async (req, res) => {
+  const { sessionId } = req.cookies;
+
+  if (sessionId) {
+    await Session.deleteOne({ _id: sessionId });
+  };
+
+  res.clearCookie('sessionId');
+  res.clearCookie('accessToken');
+  res.clearCookie('refreshToken');
+
+  res.status(204).send();
 };
