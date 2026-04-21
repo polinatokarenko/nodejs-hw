@@ -98,6 +98,7 @@ export const requestResetEmail = async (req, res) => {
 
   if (!user) {
     res.status(200).json({ message: 'Password reset email sent successfully' });
+    return;
   };
 
   const resetToken = jwt.sign(
